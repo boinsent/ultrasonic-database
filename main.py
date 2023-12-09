@@ -1,7 +1,7 @@
 from flask import Flask, render_template, jsonify
 import RPi.GPIO as GPIO
-import time
 import mysql.connector
+from ultrasonic import measure_distance
 
 main = Flask(__name__)
 app = Flask(__name__, static_url_path='/static')
@@ -39,32 +39,11 @@ def index():
 # data ng sensor to py to js
 @main.route('/get_distance')
 def get_distance():
-    distance = measure_distance()
+    distance = measure_distance(TRIG_PIN, ECHO_PIN)
 
     insert_distance_into_database(distance)
 
     return jsonify(distance=distance)
-
-
-def measure_distance():
-    GPIO.output(TRIG_PIN, True)
-    time.sleep(0.00001)
-    GPIO.output(TRIG_PIN, False)
-
-    pulse_start = time.time()
-    pulse_end = time.time()
-
-    while GPIO.input(ECHO_PIN) == 0:
-        pulse_start = time.time()
-
-    while GPIO.input(ECHO_PIN) == 1:
-        pulse_end = time.time()
-
-    duration = pulse_end - pulse_start
-    distance = (duration * 34300) / 2
-    distance = round(distance, 2)
-
-    return distance
 
 
 def percentage_value():
