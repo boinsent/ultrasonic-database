@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distance Monitor</title>
+</head>
+<body>
+    <h1>Distance: <span id="distance">Loading...</span> cm</h1>
+    <script>
+        function updateDistance() {
+            fetch('/get_distance')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('distance').innerText = data.distance;
+                })
+                .catch(error => console.error('Error fetching distance:', error));
+        }
+
+        setInterval(updateDistance, 1000);
+
+        // Initial update
+        updateDistance();
+    </script>
+</body>
+</html>

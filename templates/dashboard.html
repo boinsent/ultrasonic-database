@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Poppins:wght@100;200;300;400;500;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="static/dashboard.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <header>
+            <img src="static/img/logo.png">
+            <nav>
+                <ul>
+                    <li><a href="#">Sign Out</a></li>
+                </ul>
+            </nav>
+    </header>
+    <!-- Button sa mobile -->
+    <div class="toggle-button-container"> </div>
+                <i class="fa-solid fa-bars toggle-button" style=" cursor: pointer; font-size: 25px;"></i>
+    <div class="container">
+        <!-- left side -->
+            <div class="sidebar">
+                <div class="sidebar-item" onclick="markAsClicked(this)" id="home">
+                    <i class="fas fa-home"style="color: white; cursor: pointer; font-size: 20px;" id="home-color"></i>
+                        <p>Home</p>
+                </div>
+                <div class="sidebar-item" onclick="markAsClicked(this)" id="reports">
+                    <i class="fa-solid fa-chart-line" style="color: white; cursor: pointer; font-size: 20px;" id="reports-color"></i>
+                        <p id="reports-colors">Reports</p>
+                </div>
+                <div class="sidebar-item" onclick="markAsClicked(this)" id="containers">
+                    <i class="fa-solid fa-gamepad" style="color: white; cursor: pointer; font-size: 20px;" id="containers-color"></i>
+                        <p>Components</p>
+                </div>
+                <div class="sidebar-item" onclick="markAsClicked(this)" id="settingss">
+                    <i class="fa-solid fa-sliders" style="color: white; cursor: pointer; font-size: 20px;" id="settings-color"></i>
+                        <p>Settings</p>
+                </div>
+            </div>
+
+            <div class="time-and-date">
+                <div id="time"></div>
+                <div id="date"></div>
+            </div>
+            <div class="time-day-date-container"></div>
+    </div>
+
+<section class="home-section">
+    <div class="water-tank-container">
+        <div class="water-tank"></div>
+            <div class="water-tank-percentage" id="distance">00.00%</div>
+    </div>
+        <div class="home-grid-container">
+            <div class="grid-item">
+                <div class="water-flow-speed-inner">
+                    <div class="progress-text">00.00%</div>
+                </div>
+            <p class="water-flow-text">00.00 Per Minute</p>
+        </div>
+        <div class="grid-item"></div>
+        <div class="grid-item">
+            <img class="amount-of-water-img" src="static/img/water_level.png">
+            <p class="amount-of-water-text">Amount of Water</p>
+                <p class="water-data">00.00 Liters</p>
+        </div>
+        <div class="grid-item">
+            <img class="time-to-fill-img" src="static/img/fill.png">
+            <p class="time-to-fill-text">Time to Fill</p>
+                <p class="fill-data">00.00 minutes</p>
+        </div>
+        </div>
+</section>
+        <!-- REPORTS SECTION -->
+        <section class="reports-section">
+            <div class="rep-n-grap-container">
+                <div class="reports-reports-container">
+                    <div class="reports-water-tank"></div>
+                        <div class="reports-water-tank-button">
+                            <div class="water-tank-percentage">00.00%</div>
+                    </div>
+                </div>
+                <div class="reports-grid-container">
+                    <div class="reports-grid-data"></div>
+                    <div class="reports-grid-button">
+                        <button>DOWNLOAD</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- EEEENNNNDD -->
+        <section class="components-section">
+            <div class="sensors-text-container">
+                <div class="sensors-text">
+                    <label>Components</label>
+                </div>
+
+                <table class="sensor-table">
+                    <tr>
+                      <th>Components list</th>
+                      <th>Last Update</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                    <tr>
+                      <td>Ultrasonic Sensor</td>
+                      <td>2 minutes ago</td>
+                      <td><i class="fa-solid fa-check"></i></td>
+                      <td>...</td>
+                    </tr>
+                    <tr>
+                      <td>Water Level Float</td>
+                      <td>2 minutes ago</td>
+                      <td><i class="fa-solid fa-check"></i></td>
+                      <td>...</td>
+                    </tr>
+                    <tr>
+                        <td>Flow Rate Sensor</td>
+                        <td>2 minutes ago</td>
+                        <td><i class="fa-solid fa-check"></i></td>
+                        <td>...</td>
+                      </tr>
+                      <tr>
+                        <td>xxxx</td>
+                        <td>xxxxx</td>
+                        <td><i class="fa-solid fa-check"></i></td>
+                        <td>...</td>
+                      </tr>
+                  </table>
+            </div>
+        </section>
+        <section class="settings-section">
+            <div class="settings-text">
+                <label>Account information</label>
+            </div>
+            <div class="settings-container">
+                <div class="settings-email-box">
+                    <div class="registered-as"><p>You're currently registered as: xxx</p></div>
+                </div>
+                <div class="settings-password-box">
+                    <p>Change password</p>
+                    <input class="new-password">
+                    <p>Confirm Password</p>
+                    <input class="confirm-password">
+                </div>
+                <div class="save-button-container">
+                    <button class="save-button">Save Now</button>
+                </div>
+            </div>
+        </section>
+<!--    DISTANCE SENSOR-->
+
+    <script>
+        function updateDistance() {
+            fetch('/get_distance')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('distance').innerText = data.distance;
+                })
+                .catch(error => console.error('Error fetching distance:', error));
+        }
+
+        setInterval(updateDistance, 1000);
+
+        // Initial update
+        updateDistance();
+    </script>
+        <!-- SIDE BAR MOBILE -->
+        <script>
+                var sidebar = document.querySelector('.sidebar');
+                var togglebut = document.querySelector('.toggle-button');
+
+                togglebut.addEventListener('click', function(){
+                    sidebar.classList.toggle('active');
+                    togglebut.classList.toggle('active');
+                })
+        </script>
+        <!-- DATE TIMEEE -->
+        <script>
+            function updateTime() {
+              const now = new Date();
+              const timeElement = document.getElementById('time');
+              const dateElement = document.getElementById('date');
+
+              const options = { weekday: 'long', month: 'long', day: 'numeric' };
+              const formattedDate = now.toLocaleDateString(undefined, options);
+              const formattedTime = now.toLocaleTimeString();
+
+              timeElement.textContent = ` ${formattedTime}`;
+              dateElement.textContent = ` ${formattedDate}`;
+            }
+
+            setInterval(updateTime, 1000);
+          </script>
+        <!-- WHITEEEEEEEEE -->
+        <script>
+            function markAsClicked(item) {
+
+                var sidebarItems = document.querySelectorAll('.sidebar-item');
+                for (var i = 0; i < sidebarItems.length; i++) {
+                    sidebarItems[i].classList.remove('clicked');
+                    sidebarItems[i].style.color = 'white';
+
+                    var icon = sidebarItems[i].querySelector('i');
+                    icon.style.color = 'white';
+                }
+
+
+                item.classList.add('clicked');
+                item.style.color = '#1B426D';
+                // item.style.fontWeight = '500';
+                var icon = item.querySelector('i');
+                icon.style.color = '#1B426D';
+            }
+        </script>
+    <script>
+            var show_Home = document.getElementById("home"); //variable ng home
+            var show_Reports = document.getElementById("reports"); //variablee ng reports
+            var show_Components = document.getElementById("containers"); //variable ng components
+            var show_Settings = document.getElementById("settingss"); //variable ng settings
+
+            var home_container = document.querySelector(".home-section");
+            var reports_container = document.querySelector(".reports-section");
+            var components_container = document.querySelector('.components-section');
+            var settings_container = document.querySelector('.settings-section');
+
+            //change color
+            var reports_changeColor = document.getElementById('reports-colors');
+            var controls_changeColor = document.getElementById('controls-color');
+            // home
+            show_Reports.addEventListener("click", function() {
+                home_container.style.display = "none";
+                reports_container.style.display = "block";
+                components_container.style.display = "none";
+                settings_container.style.display = "none";
+
+             });
+
+            //  reports
+             show_Home.addEventListener("click", function() {
+                home_container.style.display = "block";
+                reports_container.style.display = "none";
+                components_container.style.display = "none";
+                settings_container.style.display = "none";
+              });
+
+            //   components
+              show_Components.addEventListener("click", function() {
+                home_container.style.display = "none";
+                reports_container.style.display = "none";
+                components_container.style.display = "block";
+                settings_container.style.display = "none";
+              });
+            // settings
+            show_Settings.addEventListener("click", function() {
+                home_container.style.display = "none";
+                reports_container.style.display = "none";
+                components_container.style.display = "none";
+                settings_container.style.display = "block";
+              });
+    </script>
+    <footer>
+        <p>Copyright &copy; 2023 Rain Harvesting System | Designed by Rizal Technological University Students</p>
+    </footer>
+</body>
+</html>
