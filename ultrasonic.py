@@ -1,3 +1,5 @@
+# Ultrasonic sensor data
+
 import RPi.GPIO as GPIO
 import time
 
