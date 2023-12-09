@@ -8,10 +8,6 @@ app = Flask(__name__, static_url_path='/static')
 TRIG_PIN = 17
 ECHO_PIN = 18
 
-# Values
-maximum_value = 4.4
-minimum_value = 17.2
-
 
 def setup_gpio():
     GPIO.setmode(GPIO.BCM)
@@ -19,7 +15,6 @@ def setup_gpio():
     GPIO.setup(ECHO_PIN, GPIO.IN)
 
 
-# connection sa website
 @main.route('/')
 def index():
     setup_gpio()
