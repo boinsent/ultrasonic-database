@@ -2,6 +2,7 @@ from flask import Flask, render_template, jsonify
 import RPi.GPIO as GPIO
 from ultrasonic import measure_distance
 from insert_into_database import insert_distance_into_database
+from firebase_connection import firebase_app
 
 main = Flask(__name__)
 app = Flask(__name__, static_url_path='/static')
@@ -28,15 +29,14 @@ def get_distance():
 
     insert_distance_into_database(distance)
 
+    # Firebase
+    firebase_app.put('/ultrasonic', 'distance', distance)
+
     return jsonify(distance=distance)
 
 
-def percentage_value():
-    pass
-
-
 if __name__ == '__main__':
-    main.run(debug=True, port=8000)
+    main.run(debug=True, host='0.0.0.0', port=8000)
 
 # For github reference
 # name ng database = admin
