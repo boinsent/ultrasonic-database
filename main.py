@@ -6,6 +6,7 @@ from firebase_connection import firebase_app
 
 main = Flask(__name__)
 app = Flask(__name__, static_url_path='/static')
+
 TRIG_PIN = 17
 ECHO_PIN = 18
 
@@ -27,6 +28,7 @@ def index():
 def get_distance():
     distance = measure_distance(TRIG_PIN, ECHO_PIN)
 
+    # Database
     insert_distance_into_database(distance)
 
     # Firebase
@@ -43,4 +45,3 @@ if __name__ == '__main__':
 # password ng database = rainharvesting
 # Database name = ultrasonic
 # Table name = ultrasonicdata
-

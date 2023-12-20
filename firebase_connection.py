@@ -1,6 +1,5 @@
 from firebase import firebase
 
-# Replace these values with your Firebase project credentials
 firebase_config = {
     "apiKey": "AIzaSyCoqiwOhIjnJ7l-XbIJRECcwn_h0U5WxIk",
     "authDomain": "aiotrainharvest-e346e.firebaseapp.com",
@@ -12,5 +11,4 @@ firebase_config = {
     "measurementId": "G-B57P5N0Y0M"
 }
 
-# Initialize Firebase
 firebase_app = firebase.FirebaseApplication(firebase_config['databaseURL'], None)
