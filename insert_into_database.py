@@ -1,6 +1,6 @@
 import mysql.connector
-# from flask import render_template, request
 
+# Para sa ultrasonic
 db_connection = mysql.connector.connect(
     host="localhost",
     user="admin",
@@ -11,7 +11,6 @@ db_connection = mysql.connector.connect(
 cursor = db_connection.cursor()
 
 
-# ultrasonic
 def insert_distance_into_database(distance):
     sql = "INSERT INTO ultrasonicdata (distance) VALUES (%s)"
 
@@ -28,3 +27,14 @@ def insert_distance_into_database(distance):
         db_connection.rollback()
         print("Error inserting data:", str(e))
 
+
+# ACCOUNTS
+# Para sa accounts
+# account_connection = mysql.connector.connect(
+#     host="localhost",
+#     user="admin",
+#     password="rainharvest",
+#     database="users"
+# )
+#
+# accounts_cursor = account_connection.cursor()

@@ -2,6 +2,7 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for
 import RPi.GPIO as GPIO
 from ultrasonic import measure_distance
 from insert_into_database import insert_distance_into_database, cursor
+from account_database import account_cursor, account_connector
 from firebase_connection import firebase_app
 
 main = Flask(__name__)
@@ -25,20 +26,22 @@ def login_form():
 
 @main.route('/login', methods=['POST'])
 def login():
-    username = request.form['username']
-    password = request.form['password']
+    try:
+        username = request.form['username']
+        password = request.form['password']
 
-    # Example query (modify as needed)
-    query = "SELECT * FROM users WHERE username=%s AND password=%s"
-    cursor.execute(query, (username, password))
-    result = cursor.fetchone()
+        query = "SELECT * FROM accounts WHERE username=%s AND password=%s"
+        account_cursor.execute(query, (username, password))
+        result = account_cursor.fetchone()
 
-    if result:
-        # Successful login, redirect to the dashboard
-        return redirect(url_for('dashboard'))
-    else:
-        # Invalid username or password, return an error message
-        return 'Invalid Username or Password.'
+        if result:
+            return redirect(url_for('dashboard'))
+        else:
+            return 'Invalid Username or Password.'
+
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
+
 
 
 @main.route('/get_distance')
