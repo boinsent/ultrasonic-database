@@ -963,37 +963,3 @@ animation_level(0.0);
 
 </body>
 </html>
-            pins[pin]['state'] = GPIO.HIGH
-
-            important_pins = [12, 16, 21]
-            any_important_pin_on = any(pins.get(p, {}).get('state') == GPIO.LOW for p in important_pins)
-
-            if not any_important_pin_on:
-                GPIO.output(6, GPIO.HIGH)
-
-        elif action == "on":
-            GPIO.output(pin, GPIO.LOW)
-            pins[pin]['state'] = GPIO.LOW
-
-            important_pins = [12, 16, 21]
-            any_important_pin_on = any(pins.get(p, {}).get('state') == GPIO.LOW for p in important_pins)
-            if any_important_pin_on:
-                GPIO.output(6, GPIO.LOW)
-
-        # Emit status update
-        socketio.emit('status_update', pins, broadcast=True)
-
-    return render_template('index.html', pins=pins)
-
-@socketio.on('request_status')
-def handle_request_status():
-    emit('status_update', pins)
-
-if __name__ == '__main__':
-    app.run(
-        debug=True,
-        host='0.0.0.0',
-        port=8000,
-        threaded=True)
-
-    socketio.run(app, debug=True, allow_unsafe_werkzeug=True)
